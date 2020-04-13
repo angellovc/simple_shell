@@ -4,7 +4,7 @@ int getcommand(char *string, size_t size)
 {
 	size_t i = 0;
 
-	if (_getline(&string, &size, stdin) == -1)
+	if (getline(&string, &size, stdin) == -1)
 		return (-1);
 	if (string == '\0')
 		return (-1);
