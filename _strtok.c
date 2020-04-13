@@ -149,7 +149,6 @@ char *get_path(char *funct)
 {
 	char *r;
 	char *h[] = {"/bin/ls", "ls"};
-
 	printf("%s\n", h[1]);
 	r = get_path(h[1]);
 	printf("r es %s\n", r);

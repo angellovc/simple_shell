@@ -2,24 +2,18 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-void execute(char **token, char *string)
+int execute(char **token, char *string)
 {
 	struct stat stats;
+	char *path;
+	extern char **environ;
 
 	if (token[0] == '\0')
-	{
-		free(string);
-		free(token);
-		exit(3);
-	}
-	if (stat(token[0], &stats) == 0)
-	{
-		if(execve(token[0], token, NULL) == -1)
-			perror("Command not found");
-	}
-	else
-	{
-		perror("Command not found");
-		free_double_single(token, '\0');
-	}
+		free(string), free(token), exit(3);
+	path = get_path(token[0]);
+	if (stat(path, &stats) == -1)
+		return (1);
+	if (execve(path, token, environ) == -1)
+		return (2);
+	return (0);
 }
