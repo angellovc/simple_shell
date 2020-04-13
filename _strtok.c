@@ -125,15 +125,6 @@ char *get_path(char *funct)
 	char *ret;
 	struct stat stats;
 
-
-	if (funct[0] == '.' || funct[0] == '/' || comp_str(funct,"exit") == 1)
-	{
-		ret = malloc(strlen(funct) + 1);
-			if (ret != NULL)
-				_strcpy(ret, funct);
-		return(ret);
-	}
-
 	r = fill_strtok(_getenv("PATH"), ':', funct);
 	for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
 	{
@@ -158,7 +149,6 @@ char *get_path(char *funct)
 {
 	char *r;
 	char *h[] = {"/bin/ls", "ls"};
-
 	printf("%s\n", h[1]);
 	r = get_path(h[1]);
 	printf("r es %s\n", r);
