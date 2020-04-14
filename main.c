@@ -2,8 +2,12 @@
 #include "simple_shell.h"
 #include <sys/types.h>
 #include <sys/wait.h>
-
-
+/**
+ *main - execute a simple shell.
+ *@ac: is number of argumens.
+ *@av: is arguments.
+ *Return: 0
+ */
 int main(int __attribute__((unused))ac, char **av)
 {
 	size_t size = 1024, error = 0, i = 0;

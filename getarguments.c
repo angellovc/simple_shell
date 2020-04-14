@@ -1,5 +1,11 @@
 #include "simple_shell.h"
-
+/**
+ *getarguments - call split string and _getline.
+ *@string: is a string.
+ *@size: is a size of file.
+ *@status: exit status
+ *Return: string.
+ */
 char **getarguments(char *string, size_t size, int status)
 {
 	char **token;
@@ -18,5 +24,5 @@ char **getarguments(char *string, size_t size, int status)
 		free_double_single(token, string);
 		exit(status);
 	}
-	return(token);
+	return (token);
 }

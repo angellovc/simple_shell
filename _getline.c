@@ -3,6 +3,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+/**
+ *_getline - take values from command line.
+ *@line: is string.
+ *@n: is a size of string.
+ *@stream: is origin of data.
+ *Return: -1 fail.
+ */
 
 ssize_t _getline(char **line, size_t *n, FILE *stream)
 {
@@ -14,7 +21,7 @@ ssize_t _getline(char **line, size_t *n, FILE *stream)
 		(*line)[i] = fgetc(stream);
 		*n = strlen(&**line);
 		i++;
- 		if (i > *n)
+		if (i > *n)
 		{
 			(*line) = _realloc((*line), *n, i);
 			if ((*line) == '\0')

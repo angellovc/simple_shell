@@ -1,5 +1,9 @@
 #include "simple_shell.h"
-
+/**
+ *_puts - print string.
+ *@str: print a string.
+ *Return: size.
+ */
 size_t _puts(char *str)
 {
 	int size = 0;

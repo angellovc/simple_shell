@@ -1,8 +1,13 @@
 #include "simple_shell.h"
-
+/**
+ *counter - counter
+ *@op: is signal
+ *Return: integer.
+ */
 size_t counter(char op)
 {
-	static size_t i = 0;
+	static size_t i;
+
 
 	if (op == '+')
 		i++;

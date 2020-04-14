@@ -1,6 +1,6 @@
 #include "simple_shell.h"
 /**
- *recursion_int - print
+ *recursion_number - print
  *@n: receive a number
  *@cont: count the lenght of number
  *Return: Amount of digits of the number n
@@ -20,7 +20,7 @@ size_t recursion_number(size_t n, size_t cont)
 	return (cont);
 }
 /**
- *print_integer - call a recursion function with an iterator
+ *perror_number - call a recursion function with an iterator
  *@n: number to print
  *Return: lenght of the number
  */

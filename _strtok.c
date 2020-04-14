@@ -5,10 +5,14 @@
 #include <unistd.h>
 #include <string.h>
 #include "simple_shell.h"
-
+/**
+ *_getenv - print a enviromental variable.
+ *@name: string.
+ *Return: string.
+ */
 char *_getenv(const char *name)
 {
-	extern char **environ;
+
 	int i = 0, j = 0, lenname = 0, flag = 0;
 
 	while (name[lenname])
@@ -34,9 +38,16 @@ char *_getenv(const char *name)
 		printf("variable no found\n");
 	return (NULL);
 }
+/**
+ *len_pat - count a character in a string.
+ *@string: string.
+ *@delimit: is a character to count.
+ *Return: number of delimit.
+ */
 int len_pat(char *string, char delimit)
 {
 	int i, j = 0;
+
 	for (i = 0; string[i]; i++)
 	{
 		if (string[i] == delimit)
@@ -44,11 +55,19 @@ int len_pat(char *string, char delimit)
 	}
 	return (j);
 }
+/**
+ *malloc_strtok - open space for array.
+ *@string: is a string.
+ *@delimit: delimiter.
+ *@funct: is string.
+ *Return: string.
+ */
 char **malloc_strtok(char *string, char delimit, char *funct)
 {
 	unsigned int i, j, k = 0, split = 5, len = 0, lenstring, lenfunct;
 	char **rstring;
 	int *tem, n;
+
 /* i and split inizializate in 5 for eliminate word "PATH="*/
 	j = len_pat(string, delimit) + 1;
 	lenfunct = strlen(funct) + 1;
@@ -82,6 +101,13 @@ char **malloc_strtok(char *string, char delimit, char *funct)
 	return (rstring);
 }
 
+/**
+ *fill_strtok - put values into a array.
+ *@string: is a string.
+ *@delimit: is character.
+ *@funct: is string.
+ *Return: string.
+ */
 char **fill_strtok(char *string, char delimit, char *funct)
 {
 
@@ -105,7 +131,7 @@ char **fill_strtok(char *string, char delimit, char *funct)
 			split = i + 1;
 			k++;
 		}
-		if (i == lenstring -1)
+		if (i == lenstring - 1)
 		{
 			for (m = 0; funct[m] != '\0'; m++)
 			{
@@ -118,6 +144,11 @@ char **fill_strtok(char *string, char delimit, char *funct)
 	return (rstring);
 }
 
+/**
+ *get_path- return a value of paht.
+ *@funct: is a value to find.
+ *Return: string.
+ */
 char *get_path(char *funct)
 {
 	int i;
@@ -136,7 +167,7 @@ char *get_path(char *funct)
 			for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
 				free(r[i]);
 			free(r);
-			return(ret);
+			return (ret);
 		}
 	}
 	for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
@@ -144,14 +175,3 @@ char *get_path(char *funct)
 	free(r);
 	return (funct);
 }
-
-/*int main (void)
-{
-	char *r;
-	char *h[] = {"/bin/ls", "ls"};
-	printf("%s\n", h[1]);
-	r = get_path(h[1]);
-	printf("r es %s\n", r);
-	free(r);
-	return (0);
-	}*/
