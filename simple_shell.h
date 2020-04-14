@@ -31,7 +31,7 @@ size_t counter(char op);
 /* commands */
 int getcommand(char *string, size_t size);
 ssize_t _getline(char **line, size_t *n, FILE *stream);
-char **getarguments(char *string, size_t size);
+char **getarguments(char *string, size_t size, int status);
 char **split_string(char *string, char *delim);
 /* Dynamic memory */
 void free_double_single(char **d, char *s);
@@ -39,12 +39,14 @@ char *char_malloc(size_t size);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 char **malloc_strtok(char *string, char delimit, char *funct);
 /* execute */
-int execute(char **token, char *string);
 char *_getenvi(char *name);
+int execute(char **token, char *path);
+
 char *_getenv(const char *name);
 int len_pat(char *string, char delimit);
 char **fill_strtok(char *string, char delimit, char *funct);
 char *get_path(char *funct);
+char *find(char **token);
 
 
 #endif
