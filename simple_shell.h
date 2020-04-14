@@ -43,7 +43,7 @@ char *_getenv(const char *name);
 int len_pat(char *string, char delimit);
 char **fill_strtok(char *string, char delimit, char *funct);
 char *get_path(char *funct);
-char *find(char **token, char *string);
+char *find(char **token);
 
 
 #endif

@@ -22,7 +22,7 @@ int main(int __attribute__((unused))ac, char **av)
 			if (isatty(STDIN_FILENO) == 1)
 				promp();
 			arg = getarguments(string, size, status);
-			path = find(arg, string);
+			path = find(arg);
 			if (path == '\0')
 			{
 				errors(av, i, 1, arg);
