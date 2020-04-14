@@ -1,6 +1,11 @@
 #include "simple_shell.h"
 #include <stdio.h>
-
+/**
+ *split_string - take a string and split in parts.
+ *@string: is a string.
+ *@delim: delimiter for split.
+ *Return: new string.
+ */
 char **split_string(char *string, char *delim)
 {
 	char **token, *s, *tok;
@@ -8,7 +13,7 @@ char **split_string(char *string, char *delim)
 
 	s = copy_string(string);
 	token = malloc(sizeof(token));
-        tok = strtok(s, delim);
+	tok = strtok(s, delim);
 	while (tok != '\0')
 	{
 		old_len = sizeof((*token)) * counter('=');
