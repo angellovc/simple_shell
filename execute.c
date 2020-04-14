@@ -1,12 +1,17 @@
 #include "simple_shell.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+/**
+ *execute - call execve
+ *@token: is a string.
+ *@string: string.
+ *Return: value.
+ */
 
 int execute(char **token, char *string)
 {
 	struct stat stats;
 	char *path;
-	extern char **environ;
 
 	if (token[0] == '\0')
 		free(string), free(token), exit(3);

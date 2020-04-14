@@ -2,6 +2,12 @@
 #include "simple_shell.h"
 #include <sys/types.h>
 #include <sys/wait.h>
+/**
+ *main - execute a simple shell.
+ *@ac: is number of argumens.
+ *@av: is arguments.
+ *Return: 0
+ */
 
 
 int main(int __attribute__((unused))ac, char **av)
@@ -35,5 +41,5 @@ int main(int __attribute__((unused))ac, char **av)
 		waitpid(child, &status, 0);
 			free_double_single(arg, string);
 	}
-	return 0;
+	return (0);
 }

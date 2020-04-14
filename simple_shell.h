@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+/* static variable*/
+extern char **environ;
 /* print function */
 int _putchar(char c);
 size_t _puts(char *str);
@@ -38,7 +40,7 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size);
 char **malloc_strtok(char *string, char delimit, char *funct);
 /* execute */
 int execute(char **token, char *string);
-
+char *_getenvi(char *name);
 char *_getenv(const char *name);
 int len_pat(char *string, char delimit);
 char **fill_strtok(char *string, char delimit, char *funct);

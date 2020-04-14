@@ -1,5 +1,9 @@
 #include "simple_shell.h"
-
+/**
+ *free_double_single - free memory
+ *@d: is a string
+ *@s: is a string.
+ */
 void free_double_single(char **d, char *s)
 {
 	size_t i = 0, size = counter('=');
