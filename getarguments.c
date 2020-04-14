@@ -1,6 +1,6 @@
 #include "simple_shell.h"
 
-char **getarguments(char *string, size_t size)
+char **getarguments(char *string, size_t size, int status)
 {
 	char **token;
 
@@ -8,14 +8,15 @@ char **getarguments(char *string, size_t size)
 	{
 		if (string != '\0')
 			free(string);
-		putchar('\n');
-		exit(1);
+		if (isatty(STDIN_FILENO) == 1)
+			putchar('\n');
+		exit(status);
 	}
 	token = split_string(string, " ");
 	if (comp_str(token[0], "exit") == 1)
 	{
 		free_double_single(token, string);
-		exit(2);
+		exit(status);
 	}
 	return(token);
 }
