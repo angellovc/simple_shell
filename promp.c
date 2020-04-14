@@ -32,7 +32,6 @@ void promp(void)
 	_puts1("@Cisfun:");
 	_puts1(pwd);
 	_puts1("$ ");
-
 	free(user);
 	free(pwd);
 
