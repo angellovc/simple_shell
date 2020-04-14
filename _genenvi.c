@@ -6,7 +6,7 @@
 #include <string.h>
 #include "simple_shell.h"
 /**
- *_getenv - print a enviromental variable.
+ *_getenvi - print a enviromental variable.
  *@name: string.
  *Return: string.
  */

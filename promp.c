@@ -31,9 +31,7 @@ void promp(void)
 	_puts1(user);
 	_puts1("@Cisfun:");
 	_puts1(pwd);
-	_puts1("$");
-
-	printf("%s@Cisfun:%s$ ", user, pwd);
+	_puts1("$ ");
 	free(user);
 	free(pwd);
 
