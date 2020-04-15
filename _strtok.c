@@ -46,7 +46,6 @@ char *_getenv(const char *name)
 int len_pat(char *string, char delimit)
 {
 	int i, j = 0;
-
 	for (i = 0; string[i]; i++)
 	{
 		if (string[i] == delimit)
@@ -128,7 +127,7 @@ char **fill_strtok(char *string, char delimit, char *funct)
 			split = i + 1;
 			k++;
 		}
-		if (i == lenstring - 1)
+		if (i == lenstring -1)
 		{
 			for (m = 0; funct[m] != '\0'; m++)
 			{
@@ -168,7 +167,7 @@ char *get_path(char *funct)
 			for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
 				free(r[i]);
 			free(r);
-			return (ret);
+			return(ret);
 		}
 	}
 	for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
