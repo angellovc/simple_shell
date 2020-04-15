@@ -25,15 +25,15 @@ void promp(void)
 {
 	char *user, *pwd;
 
-
-	user = _getenvi("USER");
-	pwd = _getenvi("PWD");
-
-	_puts1(user);
-	_puts1("@Cisfun:");
-	_puts1(pwd);
-	_puts1("$ ");
-	free(user);
-	free(pwd);
-
+	if (isatty(STDIN_FILENO) == 1)
+	{
+		user = _getenvi("USER");
+		pwd = _getenvi("PWD");
+		_puts1(user);
+		_puts1("@Cisfun:");
+		_puts1(pwd);
+		_puts1("$ ");
+		free(user);
+		free(pwd);
+	}
 }

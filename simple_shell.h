@@ -7,6 +7,18 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+/**
+*struct command - call the function related with the argument
+*
+*@comd: argument
+*@f: pointer to function
+*/
+typedef struct command
+{
+	char *comd;
+	int (*f)();
+} built_in_void;
+
 /* static variable*/
 extern char **environ;
 /* print function */
@@ -28,22 +40,25 @@ size_t double_strlen(char **str);
 void handler_sigin(int signum);
 void handler_sigstop(int signum);
 pid_t pid_child_store(pid_t child, char *op);
-/* counters */
+/* counters and store */
 size_t counter(char op);
+char *store_path(char *path, char op);
+int store_status(int status, char op);
 /* commands */
-int getcommand(char *string, size_t size);
+char *getcommand(void);
 ssize_t _getline(char **line, size_t *n, FILE *stream);
-char **getarguments(char *string, size_t size, int status);
+char **getarguments(char **argv, int i);
 char **split_string(char *string, char *delim);
 /* Dynamic memory */
-void free_double_single(char **d, char *s);
+void free_double(char **d);
 char *char_malloc(size_t size);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 char **malloc_strtok(char *string, char delimit, char *funct);
-void free_path(char **arg, char *path);
+
 /* execute */
 char *_getenvi(char *name);
-int execute(char **token, char *path);
+int execute(char **token);
+int built_in(char **token);
 
 char *_getenv(const char *name);
 int len_pat(char *string, char delimit);
