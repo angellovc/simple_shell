@@ -25,6 +25,7 @@ void promp(void)
 {
 	char *user, *pwd;
 
+
 	user = _getenvi("USER");
 	pwd = _getenvi("PWD");
 
