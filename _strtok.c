@@ -6,13 +6,12 @@
 #include <string.h>
 #include "simple_shell.h"
 /**
- *_getenv - print a enviromental variable.
- *@name: string.
- *Return: string.
+ *_getenv - get a variable
+ *@name: name of variable
+ *Return: string
  */
 char *_getenv(const char *name)
 {
-
 	int i = 0, j = 0, lenname = 0, flag = 0;
 
 	while (name[lenname])
@@ -35,14 +34,14 @@ char *_getenv(const char *name)
 		i++;
 	}
 	if (flag == 0)
-		printf("variable no found\n");
+		_puts("variable no found\n");
 	return (NULL);
 }
 /**
- *len_pat - count a character in a string.
- *@string: string.
- *@delimit: is a character to count.
- *Return: number of delimit.
+ *len_pat - size of path
+ *@string: string
+ *@delimit: delimit
+ *Return: size of path
  */
 int len_pat(char *string, char delimit)
 {
@@ -56,23 +55,22 @@ int len_pat(char *string, char delimit)
 	return (j);
 }
 /**
- *malloc_strtok - open space for array.
- *@string: is a string.
- *@delimit: delimiter.
- *@funct: is string.
- *Return: string.
+ *malloc_strtok - malloc adecuate for strtok
+ *@string: string
+ *@delimit: delimit
+ *@funct: funct
+ *Return: memory for strtok
  */
 char **malloc_strtok(char *string, char delimit, char *funct)
 {
 	unsigned int i, j, k = 0, split = 5, len = 0, lenstring, lenfunct;
 	char **rstring;
 	int *tem, n;
-
 /* i and split inizializate in 5 for eliminate word "PATH="*/
 	j = len_pat(string, delimit) + 1;
-	lenfunct = strlen(funct) + 1;
+	lenfunct = _strlen(funct) + 1;
 	tem = (int *)(malloc(sizeof(int) * (j + 1)));
-	lenstring = strlen(string);
+	lenstring = _strlen(string);
 	for (i = 5; string[i] != '\0'; i++)
 	{
 		if (string[i] == delimit)
@@ -100,13 +98,12 @@ char **malloc_strtok(char *string, char delimit, char *funct)
 	free(tem);
 	return (rstring);
 }
-
 /**
- *fill_strtok - put values into a array.
- *@string: is a string.
- *@delimit: is character.
- *@funct: is string.
- *Return: string.
+ *fill_strtok - fill strtok
+ *@string: string
+ *@delimit: delimit
+ *@funct: funct
+ *Return: double pointer filled
  */
 char **fill_strtok(char *string, char delimit, char *funct)
 {
@@ -114,7 +111,7 @@ char **fill_strtok(char *string, char delimit, char *funct)
 	unsigned int split = 5, k = 0, i, m, lenstring;
 	char **rstring;
 
-	lenstring = strlen(string);
+	lenstring = _strlen(string);
 	rstring = malloc_strtok(string, delimit, funct);
 	for (i = 5; string[i] != '\0'; i++)
 	{
@@ -143,11 +140,10 @@ char **fill_strtok(char *string, char delimit, char *funct)
 	}
 	return (rstring);
 }
-
 /**
- *get_path- return a value of paht.
- *@funct: is a value to find.
- *Return: string.
+ *get_path - find the path of a function
+ *@funct: string
+ *Return: path with his function
  */
 char *get_path(char *funct)
 {
@@ -156,12 +152,17 @@ char *get_path(char *funct)
 	char *ret;
 	struct stat stats;
 
+	if (funct[0] == '.' || funct[0] == '/' || comp_str(funct, "exit") == 1)
+	{
+		return (funct);
+	}
+
 	r = fill_strtok(_getenv("PATH"), ':', funct);
 	for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
 	{
 		if (stat(r[i], &stats) == 0)
 		{
-			ret = malloc(strlen(r[i]) + 1);
+			ret = malloc(_strlen(r[i]) + 1);
 			if (ret != NULL)
 				_strcpy(ret, r[i]);
 			for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
