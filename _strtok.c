@@ -156,6 +156,14 @@ char *get_path(char *funct)
 	char *ret;
 	struct stat stats;
 
+
+	if (funct[0] == '.' || funct[0] == '/' || comp_str(funct,"exit") == 1)
+	{
+		return(funct);
+	}
+
+
+
 	r = fill_strtok(_getenv("PATH"), ':', funct);
 	for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
 	{

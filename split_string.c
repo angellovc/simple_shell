@@ -22,7 +22,8 @@ char **split_string(char *string, char *delim)
 		token[counter('=') - 1] = copy_string(tok);
 		tok = strtok('\0', delim);
 	}
-	token = realloc(token, sizeof((*token)) * (counter('=') + 1));
+	old_len = sizeof((*token)) * counter('=');
+	token = _realloc(token, old_len, sizeof((*token)) * (counter('=') + 1));
 	token[counter('=')] = '\0';
 	free(s);
 	return (token);
