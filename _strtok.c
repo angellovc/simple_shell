@@ -5,10 +5,13 @@
 #include <unistd.h>
 #include <string.h>
 #include "simple_shell.h"
-
+/**
+ *_getenv - get a variable
+ *@name: name of variable
+ *Return: string
+ */
 char *_getenv(const char *name)
 {
-	extern char **environ;
 	int i = 0, j = 0, lenname = 0, flag = 0;
 
 	while (name[lenname])
@@ -34,6 +37,12 @@ char *_getenv(const char *name)
 		_puts("variable no found\n");
 	return (NULL);
 }
+/**
+ *len_pat - size of path
+ *@string: string
+ *@delimit: delimit
+ *Return: size of path
+ */
 int len_pat(char *string, char delimit)
 {
 	int i, j = 0;
@@ -44,6 +53,13 @@ int len_pat(char *string, char delimit)
 	}
 	return (j);
 }
+/**
+ *malloc_strtok - malloc adecuate for strtok
+ *@string: string
+ *@delimit: delimit
+ *@funct: funct
+ *Return: memory for strtok
+ */
 char **malloc_strtok(char *string, char delimit, char *funct)
 {
 	unsigned int i, j, k = 0, split = 5, len = 0, lenstring, lenfunct;
@@ -81,7 +97,13 @@ char **malloc_strtok(char *string, char delimit, char *funct)
 	free(tem);
 	return (rstring);
 }
-
+/**
+ *fill_strtok - fill strtok
+ *@string: string
+ *@delimit: delimit
+ *@funct: funct
+ *Return: double pointer filled
+ */
 char **fill_strtok(char *string, char delimit, char *funct)
 {
 
@@ -117,7 +139,11 @@ char **fill_strtok(char *string, char delimit, char *funct)
 	}
 	return (rstring);
 }
-
+/**
+ *get_path - find the path of a function
+ *@funct: string
+ *Return: path with his function
+ */
 char *get_path(char *funct)
 {
 	int i;
@@ -125,10 +151,9 @@ char *get_path(char *funct)
 	char *ret;
 	struct stat stats;
 
-
-	if (funct[0] == '.' || funct[0] == '/' || comp_str(funct,"exit") == 1)
+	if (funct[0] == '.' || funct[0] == '/' || comp_str(funct, "exit") == 1)
 	{
-		return(funct);
+		return (funct);
 	}
 
 	r = fill_strtok(_getenv("PATH"), ':', funct);

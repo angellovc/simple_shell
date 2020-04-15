@@ -20,7 +20,7 @@ int main(int __attribute__((unused))ac, char **av)
 			i++, string = char_malloc(sizeof(char) * size);
 			if (isatty(STDIN_FILENO) == 1)
 				promp();
-			arg = getarguments(string, size, status);
+			arg = getarguments(string, size, WEXITSTATUS(status));
 			if (arg[0] == '\0')
 			{
 				free_double_single(arg, string);
@@ -46,5 +46,5 @@ int main(int __attribute__((unused))ac, char **av)
 		waitpid(child, &status, 0);
 		free_path(arg, path), free_double_single(arg, string);
 	}
-	exit(status);
+	exit(WEXITSTATUS(status));
 }
