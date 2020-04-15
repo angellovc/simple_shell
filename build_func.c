@@ -12,7 +12,7 @@ int _printenv(void)
 		puts(environ[i]);
 		       i++;
 	}
-	return (1);
+	return (0);
 }
 
 /**
@@ -34,7 +34,7 @@ int built_in(char **token)
 		{
 			if (token[1] == '\0')
 			{
-				built[i].f();
+				store_status(built[i].f(), '+');
 				return (1);
 			}
 		}
