@@ -15,7 +15,7 @@ char **getarguments(char *string, size_t size, int status)
 		if (string != '\0')
 			free(string);
 		if (isatty(STDIN_FILENO) == 1)
-			putchar('\n');
+			_putchar('\n');
 		exit(status);
 	}
 	token = split_string(string, " ");

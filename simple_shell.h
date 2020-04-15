@@ -3,8 +3,10 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 /* static variable*/
 extern char **environ;
 /* print function */
@@ -38,6 +40,7 @@ void free_double_single(char **d, char *s);
 char *char_malloc(size_t size);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 char **malloc_strtok(char *string, char delimit, char *funct);
+void free_path(char **arg, char *path);
 /* execute */
 char *_getenvi(char *name);
 int execute(char **token, char *path);
