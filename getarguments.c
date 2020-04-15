@@ -19,24 +19,9 @@ char **getarguments(char **argv, int i)
 		return ('\0');
 	}
 	free(string);
-	path = find(token);
+	path = find(token, argv, i);
 	if (path == '\0')
-	{
-
-		if (built_in(token) == 0)
-		{
-			errors(argv, i, 1, token);
-			free_double(token);
-			store_status(127, '+');
-			return ('\0');
-		}
-		else
-		{
-			free_double(token);
-			store_status(0, '-');
-			return ('\0');
-		}
-	}
+		return ('\0');
 	store_path(path, 's');
 	return (token);
 }
