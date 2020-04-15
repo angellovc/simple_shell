@@ -30,7 +30,7 @@ char *_getenvi(char *name)
 		if (j == lenname && environ[i][j] == '=')
 		{
 			flag++;
-			rest = malloc(sizeof(char) * (strlen(environ[i]) - lenname));
+			rest = malloc(sizeof(char) * (_strlen(environ[i]) - lenname));
 			for (n = lenname + 1; environ[i][n]; n++)
 				rest[n - (lenname + 1)] = environ[i][n];
 			rest[n - (lenname + 1)] = '\0';
