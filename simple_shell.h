@@ -18,7 +18,6 @@ typedef struct command
 	char *comd;
 	int (*f)();
 } built_in_void;
-
 /* static variable*/
 extern char **environ;
 /* print function */
@@ -64,7 +63,7 @@ char *_getenv(const char *name);
 int len_pat(char *string, char delimit);
 char **fill_strtok(char *string, char delimit, char *funct);
 char *get_path(char *funct);
-char *find(char **token);
+char *find(char **token, char **argv, int i);
 
 
 #endif
