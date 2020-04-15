@@ -2,49 +2,41 @@
 /**
  *main - execute a simple shell.
  *@ac: is number of argumens.
- *@av: is arguments.
+ *@argv: is arguments.
  *Return: 0
  */
-int main(int __attribute__((unused))ac, char **av)
+int main(int __attribute__((unused))ac, char **argv)
 {
-	size_t size = 1024, error = 0, i = 0;
-	char *string, **arg, *path;
+	size_t error = 0, i = 0;
+	char **arg;
 	int status = 1;
 	pid_t child = 1;
 
-	signal(SIGTSTP, handler_sigstop), signal(SIGINT, handler_sigin);
+	signal(SIGTSTP, handler_sigstop);
+	signal(SIGINT, handler_sigin);
 	while (1)
 	{
 		if (child != 0)
 		{
-			i++, string = char_malloc(sizeof(char) * size);
-			if (isatty(STDIN_FILENO) == 1)
-				promp();
-			arg = getarguments(string, size, WEXITSTATUS(status));
-			if (arg[0] == '\0')
-			{
-				free_double_single(arg, string);
+			i++;
+			promp();
+			arg = getarguments(argv, i);
+			if (arg == '\0')
 				continue;
-			}
-			path = find(arg);
-			if (path == '\0')
-			{
-				errors(av, i, 1, arg);
-				free_double_single(arg, string);
-				status = 127;
-				continue;
-			}
 			child = fork();
 			pid_child_store(child, "store");
 		}
 		if (child == 0)
 		{
-			error = execute(arg, path), errors(av, i, error, arg);
-			free_path(arg, path), free_double_single(arg, string);
+			error = execute(arg);
+			errors(argv, i, error, arg);
+			free_double(arg);
 			return (0);
 		}
 		waitpid(child, &status, 0);
-		free_path(arg, path), free_double_single(arg, string);
+		store_status(WEXITSTATUS(status), '+');
+		store_path('\0', 'c');
+		free_double(arg);
 	}
-	exit(WEXITSTATUS(status));
+	exit(store_status(0, '='));
 }

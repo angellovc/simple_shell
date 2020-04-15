@@ -1,10 +1,9 @@
 #include "simple_shell.h"
 /**
- *free_double_single - free memory
+ *free_double - free memory
  *@d: is a string
- *@s: is a string.
  */
-void free_double_single(char **d, char *s)
+void free_double(char **d)
 {
 	size_t i = 0, size = counter('=');
 
@@ -18,7 +17,5 @@ void free_double_single(char **d, char *s)
 		free(d);
 		counter('0');
 	}
-	if (s != '\0')
-		free(s);
 	pid_child_store(0, "restore");
 }

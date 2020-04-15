@@ -2,13 +2,16 @@
 /**
  *execute - call execve
  *@token: is a string.
- *@path: string
  *Return: value.
  */
-int execute(char **token, char *path)
+int execute(char **token)
 {
 
-	if (execve(path, token, environ) == -1)
+	if (execve(store_path('\0', 'r'), token, environ) == -1)
+	{
+		store_path('\0', 'c');
 		return (2);
+	}
+	store_path('\0', 'c');
 	return (0);
 }

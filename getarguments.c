@@ -1,28 +1,42 @@
 #include "simple_shell.h"
 /**
  *getarguments - call split string and _getline.
- *@string: is a string.
- *@size: is a size of file.
- *@status: exit status
+ *@argv: main arguments
+ *@i: while iteratio
  *Return: string.
  */
-char **getarguments(char *string, size_t size, int status)
+char **getarguments(char **argv, int i)
 {
-	char **token;
+	char *string, **token, *path;
 
-	if (getcommand(string, size) == -1)
-	{
-		if (string != '\0')
-			free(string);
-		if (isatty(STDIN_FILENO) == 1)
-			_putchar('\n');
-		exit(status);
-	}
+	string = getcommand();
+	if (string == '\0')
+		return ('\0');
 	token = split_string(string, " ");
-	if (comp_str(token[0], "exit") == 1)
+	if (token == '\0' || token[0] == '\0')
 	{
-		free_double_single(token, string);
-		exit(status);
+		free(string), free_double(token);
+		return ('\0');
 	}
+	free(string);
+	path = find(token);
+	if (path == '\0')
+	{
+
+		if (built_in(token) == 0)
+		{
+			errors(argv, i, 1, token);
+			free_double(token);
+			store_status(127, '+');
+			return ('\0');
+		}
+		else
+		{
+			free_double(token);
+			store_status(0, '-');
+			return ('\0');
+		}
+	}
+	store_path(path, 's');
 	return (token);
 }
