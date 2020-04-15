@@ -31,7 +31,7 @@ char *_getenv(const char *name)
 		i++;
 	}
 	if (flag == 0)
-		printf("variable no found\n");
+		_puts("variable no found\n");
 	return (NULL);
 }
 int len_pat(char *string, char delimit)
@@ -51,9 +51,9 @@ char **malloc_strtok(char *string, char delimit, char *funct)
 	int *tem, n;
 /* i and split inizializate in 5 for eliminate word "PATH="*/
 	j = len_pat(string, delimit) + 1;
-	lenfunct = strlen(funct) + 1;
+	lenfunct = _strlen(funct) + 1;
 	tem = (int *)(malloc(sizeof(int) * (j + 1)));
-	lenstring = strlen(string);
+	lenstring = _strlen(string);
 	for (i = 5; string[i] != '\0'; i++)
 	{
 		if (string[i] == delimit)
@@ -88,7 +88,7 @@ char **fill_strtok(char *string, char delimit, char *funct)
 	unsigned int split = 5, k = 0, i, m, lenstring;
 	char **rstring;
 
-	lenstring = strlen(string);
+	lenstring = _strlen(string);
 	rstring = malloc_strtok(string, delimit, funct);
 	for (i = 5; string[i] != '\0'; i++)
 	{
@@ -136,7 +136,7 @@ char *get_path(char *funct)
 	{
 		if (stat(r[i], &stats) == 0)
 		{
-			ret = malloc(strlen(r[i]) + 1);
+			ret = malloc(_strlen(r[i]) + 1);
 			if (ret != NULL)
 				_strcpy(ret, r[i]);
 			for (i = 0; i < len_pat(_getenv("PATH"), ':') + 1; i++)
@@ -150,4 +150,3 @@ char *get_path(char *funct)
 	free(r);
 	return (funct);
 }
-

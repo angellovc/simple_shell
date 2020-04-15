@@ -19,7 +19,7 @@ ssize_t _getline(char **line, size_t *n, FILE *stream)
 	while (readed != -1)
 	{
 		(*line)[i] = fgetc(stream);
-		*n = strlen(&**line);
+		*n = _strlen(&**line);
 		i++;
 		if (i > *n)
 		{
