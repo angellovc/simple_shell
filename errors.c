@@ -13,6 +13,11 @@ void errors(char **av, size_t loop, int error, char **token)
 		print_error(av[0], loop, token, "not found\n");
 ;
 	if (error == 2)
-		perror("cannod execute");
+	{
+		print_error(av[0], loop, token, "Permission danied\n");
+		free_double(token);
+		exit (126);
+	}
+
 
 }
