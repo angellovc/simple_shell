@@ -27,7 +27,7 @@ typedef struct command
 typedef struct comm
 {
 	char *comd;
-	void (*f)(char **token);
+	int (*f)(char **token);
 } built_in_arg;
 /* static variable*/
 extern char **environ;
