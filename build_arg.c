@@ -3,16 +3,23 @@
 /**
  *exitfun - print environment variables
  *@token: is a pointer.
+ *return: 0
 */
-void exitfun(char **token)
+int exitfun(char **token)
 {
 	int stat = 0;
-	int j = 1, i = 0;
+	int j = 1, i = 0, m = 0;
 
 	if (token[1] == '\0')
 	{
 		free_double(token);
 		exit(0);
+	}
+	while (token[1][m] != '\0')
+	{
+		if (token[1][m] < 48 || token[1][m] > 57 )
+			return (0);
+		m++;
 	}
 	while (token[1][i] != '\0')
 	{
@@ -50,8 +57,8 @@ int built_arg(char **token)
 	{
 		if (comp_str(token[0], built[i].comd) != 0)
 		{
-			(built[i].f(token));
-			return (1);
+			store_status(built[i].f(token), '+');
+			return (0);
 		}
 		i++;
 	}

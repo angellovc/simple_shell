@@ -18,7 +18,11 @@ char *find(char **token, char **argv, int i)
 		free_double(token);
 		return ('\0');
 	}
-	built_arg(token);
+	if (built_arg(token) == 1)
+	{
+		free_double(token);
+		return ('\0');
+	}
 	path = get_path(token[0]);
 	if (path == '\0')
 		return ('\0');
