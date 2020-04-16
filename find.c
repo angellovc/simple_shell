@@ -13,6 +13,8 @@ char *find(char **token, char **argv, int i)
 	struct stat stats;
 	char *path;
 
+	if (built_exit(token, argv, i) == -1)
+		return ('\0');
 	if (built_in(token) == 1)
 	{
 		free_double(token);
