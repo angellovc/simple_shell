@@ -30,7 +30,7 @@ int built_in(char **token)
 
 	while (built[i].comd != '\0')
 	{
-		if (comp_str(token[0], built[i].comd) != 0)
+		if (comp_str(built[i].comd, token[0]) != 0)
 		{
 			if (token[1] == '\0')
 			{
