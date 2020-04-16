@@ -10,7 +10,7 @@ int _printenv(void)
 
 	while (envp[i] != NULL)
 	{
-		puts(envp[i]);
+		_puts(envp[i]);
 		       i++;
 	}
 	return (0);
