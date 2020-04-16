@@ -18,6 +18,17 @@ typedef struct command
 	char *comd;
 	int (*f)();
 } built_in_void;
+/**
+*struct comm - call the function related with the argument
+*
+*@comd: argument
+*@f: pointer to function
+*/
+typedef struct comm
+{
+	char *comd;
+	void (*f)(char **token);
+} built_in_arg;
 /* static variable*/
 extern char **environ;
 /* print function */
@@ -58,6 +69,7 @@ char **malloc_strtok(char *string, char delimit, char *funct);
 char *_getenvi(char *name);
 int execute(char **token);
 int built_in(char **token);
+int built_arg(char **token);
 
 char *_getenv(const char *name);
 int len_pat(char *string, char delimit);
