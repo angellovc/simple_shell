@@ -14,9 +14,11 @@ void errors(char **av, size_t loop, int error, char **token)
 ;
 	if (error == 2)
 	{
-		print_error(av[0], loop, token, "Permission danied\n");
+		print_error(av[0], loop, token, "Illegal number: ");
+		sterr(token[1]);
+		sterr("\n");
 		free_double(token);
-		exit (126);
+		exit(2);
 	}
 
 
