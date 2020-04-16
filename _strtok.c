@@ -147,14 +147,16 @@ char **fill_strtok(char *string, char delimit, char *funct)
  */
 char *get_path(char *funct)
 {
-	int i;
+	int i, y = 0;
 	char **r;
 	char *ret;
 	struct stat stats;
 
-	if (funct[0] == '.' || funct[0] == '/')
+	while (funct[y] != '\0')
 	{
-		return (copy_string(funct));
+		if (funct[y] == '/')
+			return (copy_string(funct));
+		y++;
 	}
 
 	r = fill_strtok(_getenv("PATH"), ':', funct);

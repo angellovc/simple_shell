@@ -20,6 +20,4 @@ void errors(char **av, size_t loop, int error, char **token)
 		free_double(token);
 		exit(2);
 	}
-
-
 }
