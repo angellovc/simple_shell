@@ -152,7 +152,7 @@ char *get_path(char *funct)
 	char *ret;
 	struct stat stats;
 
-	if (funct[0] == '.' || funct[0] == '/' || comp_str(funct, "exit") == 1)
+	if (funct[0] == '.' || funct[0] == '/')
 	{
 		return (copy_string(funct));
 	}
