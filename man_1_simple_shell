@@ -1,18 +1,63 @@
 .TH HSH 1 "13 April 2020" "HSH 1.0" "General use manual"
 .SH NAME
 .B hsh
-- simple version of sh command line interpreter
+- is a simple command line interpreter
 .SH SYNOPSIS
 .B hsh
-[command] [arguments]
+- [command] [arguments]
 .SH DESCRIPTION
-Holberton School is a project-based alternative to college for the next generation of software engineers.
-.SH OPTIONS
-.B holberton
-does not take any options. However, you can supply studentname.
+HSH is a simple command line interpreter which have the ability to manipulate files and directories, manage environ variables and execute commands that are passed through the standart input.
+.SS Interactive mode
+At the moment hsh is executed in this mode, the promp will be displayed showing the user name followed by the shell massage "Cisfun" and the user current path taked from the PWD environment variable. Once prompt is showed, you gonna see the cursor waiting for your command lines.
+.SS Non interactive
+Even you can use hsh to execute commands or execute his built-ins without open it, just passing the arguments through a pipeline, this way, the prompt don't gonna be shown on the screen, instead, you will get the command results or the executed program running.
+.SH INVOCATION
+.SS Path search
+As you might notice, you don't need to put the entire path of your programs when you wish execute one in the hsh shell, you just need to put a program to do that and it is due to the way the commands are evaluated.
+.SS Path added command
+Once a command is typed in, its check whether a command has path added, then looks into the file route to execute it 
+Once a command.
+
+Example: 
+.B  /bin/ls
+.OP -l
+.OP ../
+
+.SS Non path added
+After receiving a command without path added, the routine is so different, first, the command is searched into the hsh built-ins, whether it is not found, then proceed to look into each directory stored at PATH variable and that's because of this variable store the most common places in which linux file manager install the program. If your program does not installed. If your programs does not installed in one of this directories, you should type the entire program path you're trying run.
+
+Example: 
+.B ls
+.OP -l
+.OP ../
+
+.SH BUILT-INS
+The built-ins refers to those programs which are integrated into the shell code and to execute it shell don't need to make an system call.
+.SS ENV
+You use env without arguments to display the environment variables
+.SS SETENV
+To use setenv, you need to call the it tipying setenv followed by a variable that you want to change, in case that his variable exist, or you want to add, in case the environment variable don't exist, accompanied with his value.
+
+.B setenv -
+.OP variable
+.OP value
+
+.SS UNSETENV
+This functions is used to remove an environment variable, to use it, just put type in the name of the variable that you would like to remove.
+
+.B unsetenv -
+.OP variable
+.SH Exit
+The way to leave the program is typing
+.OP exit
+into the command line or just pressing
+.B ctrl+D
+by that way you get a secure exit of the hsh avoiding memory leaks.
+.SH Exit status
+Once you leave hsh shell, your process behind will get the exit status of hsh which means the exit status of the program that you has executed before or 127 in case the command or program has not been founded.
 .SH SEE ALSO
-.I peerlearning(2), projectbased(2), fullstack(2), Betty(1)
+env(1), unsetenv(3), setenv(3), environ(7)
 .SH BUGS
 No known bugs.
 .SH AUTHOR
-Julien Barbier, Sylvain Kalache, Sophie Barbier, Guillaume Salva, Kris Bredemeier, Julien Cyr, Alex Gautier and all the 
+Angello Villegas, René Mauricio Olarte.
