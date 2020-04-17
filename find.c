@@ -26,7 +26,6 @@ char *find(char **token, char **argv, int i)
 	if (stat(path, &stats) == -1)
 	{
 		errors(argv, i, 1, token);
-		free(path);
 		free_double(token);
 		store_status(127, '+');
 		return ('\0');

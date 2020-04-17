@@ -18,6 +18,17 @@ typedef struct command
 	char *comd;
 	int (*f)();
 } built_void;
+/**
+*struct commands - call the function related with the argument
+*
+*@comd: argument
+*@f: pointer to function
+*/
+typedef struct command_arg
+{
+	char *comd;
+	int (*f)();
+} built_arg;
 /* static variable*/
 extern char **environ;
 /* print function */
@@ -43,6 +54,7 @@ pid_t pid_child_store(pid_t child, char *op);
 size_t counter(char op);
 char *store_path(char *path, char op);
 int store_status(int status, char op);
+char **store_envp(char **envp, char op);
 
 /* commands */
 char *getcommand(void);
@@ -57,7 +69,7 @@ char **malloc_strtok(char *string, char delimit, char *funct);
 
 /* execute */
 char *_getenvi(char *name);
-void execute(char **token);
+int execute(char **token);
 int built_in_void(char **token);
 int built_in_arg(char **token);
 int built_in(char **token);

@@ -6,10 +6,11 @@
 int _printenv(void)
 {
 	int i = 0;
+	char **envp = store_envp('\0', 'r');
 
-	while (environ[i] != NULL)
+	while (envp[i] != NULL)
 	{
-		_puts(environ[i]);
+		_puts(envp[i]);
 		       i++;
 	}
 	return (0);

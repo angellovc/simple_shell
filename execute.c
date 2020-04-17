@@ -4,9 +4,14 @@
  *@token: is a string.
  *Return: value.
  */
-void execute(char **token)
+int execute(char **token)
 {
 
-	execve(store_path('\0', 'r'), token, environ);
+	if (execve(store_path('\0', 'r'), token, environ) == -1)
+	{
+		store_path('\0', 'c');
+		return (2);
+	}
 	store_path('\0', 'c');
+	return (0);
 }

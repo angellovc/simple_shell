@@ -3,17 +3,19 @@
  *main - execute a simple shell.
  *@ac: is number of argumens.
  *@argv: is arguments.
+ *@envp: environment variables
  *Return: 0
  */
-int main(int __attribute__((unused))ac, char **argv)
+int main(int __attribute__((unused))ac, char **argv, char **envp)
 {
-	size_t i = 0;
+	size_t error = 0, i = 0;
 	char **arg;
 	int status = 1;
 	pid_t child = 1;
 
 	signal(SIGTSTP, handler_sigstop);
 	signal(SIGINT, handler_sigin);
+	store_envp(envp, 's');
 	while (1)
 	{
 		if (child != 0)
@@ -28,7 +30,8 @@ int main(int __attribute__((unused))ac, char **argv)
 		}
 		if (child == 0)
 		{
-			execute(arg);
+			error = execute(arg);
+			errors(argv, i, error, arg);
 			free_double(arg);
 			return (0);
 		}
