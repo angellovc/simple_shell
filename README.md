@@ -39,6 +39,9 @@ hsh main.c shell.c test_ls_2
 
 ```
 
+![diagram](/grafic.jpeg)
+Format: ![Alt Text](url)
+
 # HOW TO CONTRIBUTE
 
 you can contribute by requesting a pull request.
